@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(13, 17, 23);
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+        }
+
+        header {
+            position: sticky;
+            background-color: rgb(36, 41, 47);
+            width: 100vw;
+            height: 7vh;
+            display: flex;
+        }
+
+        .button {
+            transform: translateY(-50%);
+            position: relative;
+            top: 50%;
+            left: 96vw;
+
+            width: 5vh;
+            height: 5vh;
+            font-size: 3.5vh;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            border: white 1px solid;
+            border-radius: 2.5vh;
+        }
+
+        #searchForRepository {
+            transform: translateY(-50%);
+            position: relative;
+            top: 50%;
+            left: 65vw;
+
+            width: 20vw;
+            height: 3vh;
+            background-color: rgb(36, 41, 47);
+            color: white;
+            border: white 1px solid;
+            border-radius: 1vh;
+
+            padding: 1vh;
+            padding-left: 1vw;  
+        }
+
+        #addNewRepository {
+            background-color: rgb(35, 134, 54);
+            text-align: center;
+            width: 8vw;
+            height: 2.3vh;
+            border: 0px;
+            border-radius: 1vh;
+            padding: 1vh;
+            margin-top: 1vh;
+
+            position: absolute;
+            left: 75vw;
+            top: 20vh;
+            transform: translate(-50%, -50%);
+
+            cursor: pointer;
+        }
+
+        #bigP {
+            transform: translate(-50%, -50%);
+            position: absolute;
+            top: 40vh;
+            left: 25vw;
+
+            width: 30vh;
+            height: 30vh;
+            font-size: 21vh;
+            font-weight: bolder;
+            text-align: center;
+            color: white;
+            border: white 1px solid;
+            border-radius: 15vh;
+        }
+
+        #repositoryTable {
+            position: absolute;
+            left: 34.25vw;
+            top: 22vh;
+        }
+
+        .repositoryRow {
+            width: 30vw;
+        }
+        .repositoryRow p {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .flexer {
+            display: flex;
+        }
+        .flexer div {
+            margin-right: 1.5vw;
+        }
+
+        .rowDivider {
+            margin-top: 3vh;
+            height: 1px;
+            width: 47.5vw;
+            background-color: gray;
+        }
+
+        a div {
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a th:href="@{|/files|}"><div class="button">P</div></a>
+        <a th:href="@{|/files/findByName|}"><input id="searchForRepository" placeholder="Search for profile..."></a>
+    </header>
+    
+    <a th:href="${'files/newRepository'}"><div id="addNewRepository">Add new repository</div></a>
+    <div id="bigP">P</div>
+    <table id="repositoryTable">
+        <tr class="repositoryRow">
+            <td>
+                <div>
+                    <a th:href="${'files/repositories'}"><p>NeuralNetwork</p></a>
+                    <div class="flexer">
+                        <div class="language">C</div>
+                        <div class="updatedTime">Updated 2 days ago</div>
+                    </div>
+                    <div class="rowDivider"></div>
+                </div>
+            </td>
+        </tr>
+        <tr th:each="repository : ${repositories}" class="repositoryRow">
+            <td>
+                <div>
+                    <a th:href="@{|/files/find?parentId=${repository.id}|}"><p th:text="${repository.name}"></p></a>
+                    <div class="flexer">
+                        <div class="language">Scala</div>
+                        <div class="updatedTime">Updated 3 days ago</div>
+                    </div>
+                    <div class="rowDivider"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

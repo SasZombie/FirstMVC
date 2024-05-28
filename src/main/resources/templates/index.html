@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css"/>
+        <style>
+            body {
+                background-color: rgb(13, 17, 23);
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+            }
+
+            .button {
+                width: 5vw;
+                height: 4vh;
+                font-size: 18px;
+                color: white;
+            }
+
+            #signUp {
+                border: white 2px solid;
+                border-radius: 15px;
+            }
+
+            .centeredText {
+                position: relative;
+                transform: translateY(-50%);
+                top: 50%;
+                text-align: center;
+            }
+
+            #right {
+                display: flex;
+                position: absolute;
+                right: 1%
+            }
+            
+            #homeCenterText {
+                position: absolute;
+                transform: translateY(-50%);
+                top: 35vh;
+                left: 25vw;
+                width: 80vw;
+            }
+
+            #homeCenterText p {
+                margin: 0px;
+            }
+            #p1 {
+                font-size: 80px;
+                font-weight: bolder;
+            }
+            #p2 {
+                font-size: 25px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="right">
+                <a th:href="@{'/users/new'}"><div class="button" id="signIn"><div class="centeredText">Sign in</div></div></a>
+                <a th:href="@{'/files'}"><div class="button" id="signUp"><div class="centeredText">Sign up</div></div></a>
+            </div>
+        </header>
+
+        <div id="homeCenterText">
+            <p id="p1">Let’s build from here</p>
+            <p id="p2">A copy of the world’s leading AI-powered developer platform.</p>
+        </div>
+    </body>
+</html>

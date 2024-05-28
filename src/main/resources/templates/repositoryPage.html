@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(13, 17, 23);
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+        }
+
+        header {
+            position: sticky;
+            background-color: rgb(36, 41, 47);
+            width: 100vw;
+            height: 7vh;
+            display: flex;
+        }
+
+        .button {
+            transform: translateY(-50%);
+            position: relative;
+            top: 50%;
+            left: 96vw;
+
+            width: 5vh;
+            height: 5vh;
+            font-size: 3.5vh;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            border: white 1px solid;
+            border-radius: 2.5vh;
+        }
+
+        #searchForRepository {
+            transform: translateY(-50%);
+            position: relative;
+            top: 50%;
+            left: 65vw;
+
+            width: 20vw;
+            height: 3vh;
+            background-color: rgb(36, 41, 47);
+            color: white;
+            border: white 1px solid;
+            border-radius: 1vh;
+
+            padding: 1vh;
+            padding-left: 1vw;  
+        }
+
+        table {
+            position: absolute;
+            transform: translateX(-50%);
+            top: 20vh;
+            left: 45vw;
+            width: 48vw;
+            border: white solid 1px;
+        }
+        th {
+            height: 6vh;
+        }
+        tr {
+            height: 4vh;
+        }
+        td {
+            width: 33%;
+            border-top: white solid 1px;
+            padding-left: 1vw;
+        }
+        tr a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .grayTextCell,
+        .grayTextCellRight {
+            color: gray;
+        }
+
+        .grayTextCellRight {
+            text-align: end;
+            padding-right: 1vw;
+        }
+
+        #downloadButton {
+            background-color: rgb(35, 134, 54);
+            text-align: center;
+            width: 5vw;
+            height: 3vh;
+            border-radius: 1vh;
+            padding-top: 1vh;
+            padding-bottom: 0.5vh;
+            margin-top: 1vh;
+
+            position: absolute;
+            left: 65vw;
+            top: 13vh;
+            transform: translateX(-50%);
+
+            cursor: pointer;
+            user-select: none;
+        }        
+    </style>
+</head>
+<body>
+    <header>
+        <a th:href="@{|/files|}"><div class="button">P</div></a>
+        <a th:href="@{|/files/findByName|}"><input id="searchForRepository" placeholder="Search for profile..."></a>
+    </header>
+    <div id="path">
+        <div th:each="magarie : ${magarii}" style="display: inline-block">
+            <a th:href="@{|/files/find?parentId=${magarie.id}|}">
+                <div th:text="${magarie.name}" style="display: inline-block"></div>
+            </a>
+            <div style="display: inline-block">/</div>
+        </div>
+    </div>
+    <a th:href="@{|/files/newFile?parentId=${parentId}|}">
+        <div id="downloadButton">Add new file</div>
+    </a>
+    <table>
+        <tr>
+            <th>Name</a></th>
+            <th class="grayTextCell">Last commit message</th>
+            <th class="grayTextCellRight">Last commit date</th>
+            <th>Delete</th>
+        </tr>
+        <!--
+        <tr>
+            <td><a href="">.vscode</a></td>
+            <td class="grayTextCell">Finished Verification :3</td>
+            <td class="grayTextCellRight">2 days ago</td>
+        </tr>
+        <tr>
+            <td><a href="">CMakeFiles</a></td>
+            <td class="grayTextCell">Finished Verification :3</td>
+            <td class="grayTextCellRight">2 days ago</td>
+        </tr>
+        -->
+        <tr th:each="file : ${foundFile}">
+            <td><a th:text="${file.name}" th:href="@{|/files/find?parentId=${file.id}|}"></a></td>
+            <td class="grayTextCell" th:text="${file.type}"></td>
+            <td class="grayTextCell" th:text="${file.finishedOn}"></td>
+            <td style="text-aling: centered;"><a th:href="@{|/files/remove?parentId=${parentId}&id=${file.id}|}">🗑️</a></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(13, 17, 23);
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+        }
+
+        header {
+            position: sticky;
+            background-color: rgb(36, 41, 47);
+            width: 100vw;
+            height: 7vh;
+            display: flex;
+        }
+
+        .button {
+            transform: translateY(-50%);
+            position: relative;
+            top: 50%;
+            left: 96vw;
+
+            width: 5vh;
+            height: 5vh;
+            font-size: 3.5vh;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            border: white 1px solid;
+            border-radius: 2.5vh;
+        }
+
+        #searchForRepository {
+            transform: translateY(-50%);
+            position: relative;
+            top: 50%;
+            left: 65vw;
+
+            width: 20vw;
+            height: 3vh;
+            background-color: rgb(36, 41, 47);
+            color: white;
+            border: white 1px solid;
+            border-radius: 1vh;
+
+            padding: 1vh;
+            padding-left: 1vw;
+        }
+
+        #submitButton {
+            background-color: rgb(35, 134, 54);
+            text-align: center;
+            width: 8vw;
+            height: 2.3vh;
+            border: 0px;
+            border-radius: 1vh;
+            padding: 1vh;
+            margin-top: 1vh;
+
+            position: absolute;
+            right: -4vw;
+            top: 33vh;
+            transform: translate(-50%, -50%);
+
+            cursor: pointer;
+        }
+
+        #content {
+            transform: translate(-50%, -50%);
+            position: absolute;
+            left: 50vw;
+            top: 35vh;
+        }
+
+        h2, p {
+            margin: 5px;
+        }
+
+        p {
+            color: gray;
+            font-size: 14px;
+        }
+
+        .rowDivider {
+            margin-top: 3vh;
+            height: 1px;
+            width: 47.5vw;
+            background-color: gray;
+        }
+
+        #name {
+            border-radius: 5px;
+            background :  rgb(13, 17, 23);
+            width: 15vw;
+            height: 3vh;
+        }
+
+        form label {
+            position: relative;
+            top: 2vh;
+        }
+        form input {
+            margin-top: 3vh;
+        }
+
+        a input {
+            margin-top: 0px;
+            text-decoration: none;
+            color: white;
+        }
+
+        td {
+            padding-right: 20px;
+            margin-top: 0px;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <a th:href="@{|/files|}"><div class="button">P</div></a>
+    <a th:href="@{|/files/findByName|}"><input id="searchForRepository" placeholder="Search for profile..."></a>
+</header>
+<div id="content">
+    <form th:action="@{/files/findByName}" method="POST">
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Find</button>
+    </form>
+</div>
+</body>
+</html>

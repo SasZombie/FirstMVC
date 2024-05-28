@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            body {
+                background-color: rgb(13, 17, 23);
+                font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+            }
+            
+            #logo {
+                background-image: url('https://cdn.discordapp.com/attachments/466291143752286208/1226321730784727102/AAAAABJRU5ErkJggg.png?ex=6624581c&is=6611e31c&hm=1c4e428a239da79729a6a7f85cc6522f6b2ac832e2da91057085881cfa01f22b&');
+                background-repeat: no-repeat;
+                background-size: contain;
+                position: relative;
+                transform: translate(-50%, -50%);
+                top: 10vh;
+                left: 49.25vw;
+                width: 15vh;
+                height: 15vh;
+            }
+            
+            #homeCenterText {
+                position: relative;
+                transform: translate(-50%, -50%);
+                top: 30vh;
+                left: 50vw;
+            }
+
+            #title {
+                font-size: 25px;
+                text-align: center;
+                font-weight: lighter;
+                margin-bottom: 30px;
+            }
+
+            #signInBox {
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 14vw;
+                height: 39vh;
+                background-color: rgb(22, 27, 34);
+                border-radius: 1vh;
+                border: 1px white solid;
+            }
+            
+            .SignInBoxChildren {
+                position: relative;
+                left: 15px;
+                top: 30px;
+                margin: 5px;
+            }
+
+            #idkAnymore {
+                border-radius: 5px;
+                background-color: rgb(13, 17, 23);
+                width: 10.5vw;
+                height: 3vh;
+            }
+
+            #DLSbreak {
+                height: 1vh;
+            }
+
+            button {
+                background-color: rgb(35, 134, 54);
+                text-align: center;
+                width: 12vw;
+                height: 3.3vh;
+                border: 0px;
+                border-radius: 1vh;
+                padding: 5px;
+                margin-top: 1vh;
+
+                position: relative;
+                left: 50%;
+                transform: translateX(-50%);
+
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="homeCenterText">
+            <div id="logo"></div>
+            <p id="title">Sign up on GitHub</p>
+            <div id="signInBox">
+                <form th:action="@{/register}" method="post">
+                    <label for="username">Username</label>:
+                    <input type="text" id="username" name="username" autofocus="autofocus" /> <br />
+                    <label for="password">Password</label>:
+                    <input type="password" id="password" name="password" /> <br />
+
+                    <label for="role">Role</label>:
+                    <select id="role" name="role">
+                        <option value="ROLE_USER">User</option>
+                        <option value="ROLE_ADMIN">Admin</option>
+                    </select> <br />
+
+                    <input type="submit" value="Register" />
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
